@@ -8,19 +8,7 @@
 <body>
 
 <div class="container" id="app">
-
-    <h3 class="text-center">Курсы валют</h3>
-
-    <div class="columns medium-4" v-for="result in results.Valute">
-        <div class="card">
-            <div class="card-divider">
-                <p>{{result.Name}}</p>
-                <p>{{'Сегодня: ' + result.Value}}</p>
-                <p>{{'Вчера: ' + result.Previous}}</p>
-            </div>
-        </div>
-    </div>
-
+    <exchange></exchange>
 </div>
 
 <script src="https://unpkg.com/vue"></script>

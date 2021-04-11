@@ -1,7 +1,18 @@
 Vue.component('exchange', {
-    template: `  
+
+    template: ` 
     <div class="exchange">
         <h3 class="text-center">Курсы валют</h3>
+        <div v-if="loaded">
+              <div class="preloader">
+               <h3 class="text-center">Курсы валют</h3>
+                    <div class="preloader__row">
+                    <div class="preloader__item"></div>
+                    <div class="preloader__item"></div>
+                    </div>
+               </div>
+        </div>
+    
         <div class="columns medium-4" v-for="result in results.Valute">
             <div class="card">
                 <div class="card-divider">
@@ -16,20 +27,23 @@ Vue.component('exchange', {
 
     data() {
         return {
-            results: []
+            results: [],
+            url: 'https://www.cbr-xml-daily.ru/daily_json.js',
+            loaded: true
         }
+
     },
 
     created() {
-        axios.get(val).then(response => {
+        axios.get(this.url).then(response => {
             this.results = response.data
+            setTimeout(() => this.loaded = false, 3000);
         })
     }
-
 })
 
-const val = "https://www.cbr-xml-daily.ru/daily_json.js";
 
-app = new Vue({
+let app = new Vue({
     el: '#app',
 });
+
